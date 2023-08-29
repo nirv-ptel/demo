@@ -1,0 +1,28 @@
+<p>profile works!</p>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="name" placeholder="name" />
+    <input type="email" formControlName="email" placeholder="email" />
+    <input type="password" formControlName="password" placeholder="password" />
+    <input type="number" formControlName="mobileNo" placeholder="mobileNo" />
+
+    <input type="file" (change)="onImageSelected($event)" formControlName="photo" />
+    <button type="submit">Submit</button>
+</form>
+
+<table border="2">
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+
+            <td>{{ user.mobileNo }}</td>
+
+            <td> <img *ngIf="user.photo" [src]="user.photo" class="images" alt="User Image">
+            </td>
+            <td><button (click)="deleteUser(user.id)">delete</button>
+            <button (click)="update(user.id)">update</button></td>
+
+        </tr>
+    </tbody>
+</table>
